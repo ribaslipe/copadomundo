@@ -1,0 +1,86 @@
+﻿@model IEnumerable<DAL.Entity.jogo>
+
+
+@if (Model != null)
+{
+    int i = 0;
+    foreach (var item in Model)
+    {
+        <div class="row" style="margin-top:5px;">
+            <div class="col-md-1">
+                <label class="float-right">@item.time.time_nome</label>
+            </div>
+            <div class="col-md-1">
+                <input id="time1Gol" type="number" name="@item.time1_id~@item.temporada_id" class="form-control text-center txtgol goltime1_@i" min="0" max="20" />
+            </div>
+
+            <span style="color:#c8c8c8">X</span>
+
+            <div class="col-md-1">
+                <input id="time2Gol" type="number" name="@item.time2_id~@item.temporada_id" class="form-control text-center txtgol  goltime2_@i" min="0" max="20" />
+            </div>
+            <div class="col-md-1">
+                <label class="float-left">@item.time1.time_nome</label>
+            </div>
+        </div>
+    }
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            <button id="btnProximaFase" class="btn btn-primary btn-block">
+                próxima fase <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+}
+else
+{
+    <h3>Não existe times nem jogos cadastrados!</h3>
+}
+
+
+<script type="text/javascript">
+
+    $('#btnProximaFase').click(function () {
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+        var error = false;
+        $(".txtgol").each(function () {
+            if ($(this).val() == "") {                
+                error = true;
+            }
+        });
+
+        if (!error) {
+            var str = "";           
+            $('.txtgol').map(function () {
+                str = str + $(this).attr("name") + "~" + $(this).val() + "°";
+            }).get().join(',');
+
+            $.post("@Url.Action("SalvarTemporada", "Home")", { lst: str }, function (d) {
+                alert('teste');
+            });
+
+        } else {
+            toastr["error"]("Favor preencher todos os resultados!");
+        }
+
+    });
+
+</script>

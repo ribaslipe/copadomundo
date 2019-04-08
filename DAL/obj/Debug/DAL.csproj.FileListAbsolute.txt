@@ -1,0 +1,10 @@
+C:\Users\Felipe\Desktop\CopaMundo\DAL\bin\Debug\DAL.dll
+C:\Users\Felipe\Desktop\CopaMundo\DAL\bin\Debug\DAL.pdb
+C:\Users\Felipe\Desktop\CopaMundo\DAL\obj\Debug\DAL.dll
+C:\Users\Felipe\Desktop\CopaMundo\DAL\obj\Debug\DAL.pdb
+C:\Users\Felipe\Desktop\CopaMundo\DAL\bin\Debug\DAL.dll.config
+C:\Users\Felipe\Desktop\CopaMundo\DAL\bin\Debug\EntityFramework.dll
+C:\Users\Felipe\Desktop\CopaMundo\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Felipe\Desktop\CopaMundo\DAL\bin\Debug\EntityFramework.xml
+C:\Users\Felipe\Desktop\CopaMundo\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Felipe\Desktop\CopaMundo\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache

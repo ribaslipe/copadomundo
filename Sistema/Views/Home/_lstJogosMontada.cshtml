@@ -1,0 +1,231 @@
+﻿@model IEnumerable<DAL.Entity.jogo>
+
+
+@{
+    DAL.Persistence.TemporadaDal tDal = new DAL.Persistence.TemporadaDal();
+    DAL.Persistence.JogoDal jDal = new DAL.Persistence.JogoDal();
+    var tempAtual = tDal.RetornaTemporadaAtual();
+    string titulo = "";
+    if (tempAtual.temporada_id != 4)
+    {
+        titulo = tempAtual.temporada1;
+    }
+    else
+    {
+        var j = jDal.ListarTodos(4);
+        titulo = string.Format("Copa encerrada o time vencedor foi {0}!", j.First().time.time_nome);
+    }
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h3 style="font-family: 'Raleway', sans-serif;">@titulo</h3>
+    </div>
+</div>
+<br />
+
+<div class="row">
+    <div class="col-md-3">
+        @foreach (var item in Model.Where(s => s.temporada_id == 1))
+        {
+            <table class="shadow-sm">
+                <tbody>
+                    <tr>
+                        <td class="tdTime">@item.time.time_nome</td>
+
+                        @if (tempAtual.temporada_id == 1)
+                        {
+                            <td class="text-center tdGol">
+                                <input type="number" name="@item.time1_id~@item.temporada_id" class="form-control text-center txtgolfase" min="0" max="20" />
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="text-center tdGol">@item.time1_gols</td>
+
+                        }
+                    </tr>
+                    <tr>
+                        <td class="tdTime">@item.time1.time_nome</td>
+                        @if (tempAtual.temporada_id == 1)
+                        {
+                            <td class="text-center tdGol">
+                                <input type="number" name="@item.time2_id~@item.temporada_id" class="form-control text-center txtgolfase" min="0" max="20" />
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="text-center tdGol">@item.time2_gols</td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+        }
+    </div>
+    <div class="col-md-3" style="margin-top:10.5%;">
+        @foreach (var item in Model.Where(s => s.temporada_id == 2))
+        {
+            <table class="shadow-sm">
+                <tbody>
+                    <tr>
+                        <td class="tdTime">@item.time.time_nome</td>
+                        @if (tempAtual.temporada_id == 2)
+                        {
+                            <td class="text-center tdGol">
+                                <input type="number" name="@item.time1_id~@item.temporada_id" class="form-control text-center txtgolfase" min="0" max="20" />
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="text-center tdGol">@item.time1_gols</td>
+
+                        }
+                    </tr>
+                    <tr>
+                        <td class="tdTime">@item.time1.time_nome</td>
+                        @if (tempAtual.temporada_id == 2)
+                        {
+                            <td class="text-center tdGol">
+                                <input type="number" name="@item.time2_id~@item.temporada_id" class="form-control text-center txtgolfase" min="0" max="20" />
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="text-center tdGol">@item.time2_gols</td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+        }
+    </div>
+    <div class="col-md-3" style="margin-top:15.5%;">
+        @foreach (var item in Model.Where(s => s.temporada_id == 3))
+        {
+            <table class="shadow-sm">
+                <tbody>
+                    <tr>
+                        <td class="tdTime">@item.time.time_nome</td>
+                        @if (tempAtual.temporada_id == 3)
+                        {
+                    <td class="text-center tdGol">
+                        <input type="number" name="@item.time1_id~@item.temporada_id" class="form-control text-center txtgolfase" min="0" max="20" />
+                    </td>
+
+                        }
+                        else
+                        {
+                    <td class="text-center tdGol">@item.time1_gols</td>
+                        }
+                    </tr>
+                    <tr>
+                        <td class="tdTime">@item.time1.time_nome</td>
+                        @if (tempAtual.temporada_id == 3)
+                        {
+
+                    <td class="text-center tdGol">
+                        <input type="number" name="@item.time2_id~@item.temporada_id" class="form-control text-center txtgolfase" min="0" max="20" />
+                    </td>
+                        }
+                        else
+                        {
+                    <td class="text-center tdGol">@item.time2_gols</td>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+        }
+    </div>
+    <div class="col-md-3" style="margin-top:17%;">
+        @foreach (var item in Model.Where(s => s.temporada_id == 4))
+        {
+            <table class="shadow-sm">
+                <tbody>
+                    <tr>
+                        <td class="tdTime text-center">@item.time.time_nome</td>                       
+                    </tr>
+                </tbody>
+            </table>
+            <br />
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <button id="btnSalvarCamp" class="btn btn-primary btn-block">
+            próxima fase <i class="fa fa-arrow-right" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
+<br />
+@if (tempAtual.temporada_id == 4)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <button id="btnZerarCamp" class="btn btn-light btn-block">
+                zerar campeonato
+            </button>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+
+    $('#btnZerarCamp').click(function () {
+        $('#btnZerarCamp').attr("disabled", "disabled");
+        $.get("@Url.Action("zerarCampeonato", "Home")", function (d) {
+            $('#dvMontado').html(d);
+        });
+    });
+
+    $('#btnSalvarCamp').click(function () {
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+        $('#btnSalvarCamp').attr("disabled", "disabled");
+
+        var error = false;
+        $(".txtgolfase").each(function () {
+            if ($(this).val() == "") {
+                error = true;
+                return false;
+            }
+        });
+
+
+        if (!error) {
+            var str = "";
+            $('.txtgolfase').map(function () {
+                str = str + $(this).attr("name") + "~" + $(this).val() + "°";
+            }).get().join(',');
+
+
+            $.post("@Url.Action("SalvarTemporada", "Home")", { lst: str }, function (d) {
+                $('#dvMontado').html(d);
+            });
+
+        } else {
+            toastr["error"]("Favor preencher todos os resultados!");
+            $('#btnSalvarCamp').removeAttr("disabled");
+        }
+
+    });
+
+</script>

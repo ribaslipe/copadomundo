@@ -1,0 +1,5 @@
+C:\Users\Felipe\Desktop\CopaMundo\BLL\bin\Debug\BLL.dll
+C:\Users\Felipe\Desktop\CopaMundo\BLL\bin\Debug\BLL.pdb
+C:\Users\Felipe\Desktop\CopaMundo\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Users\Felipe\Desktop\CopaMundo\BLL\obj\Debug\BLL.dll
+C:\Users\Felipe\Desktop\CopaMundo\BLL\obj\Debug\BLL.pdb
